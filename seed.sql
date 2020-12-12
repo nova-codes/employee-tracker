@@ -4,11 +4,22 @@ VALUES ('Accounting'),('Legal'),('Engineering'),('Data Management'),('Marketing'
 
 -- ROLES SEED --
 INSERT INTO roles (title, salary, department_id)
-VALUES ('Compensation Analyst', 73644, 1),('Account Coordinator', 86025, 1),('Senior Financial Analyst', 108750, 1),
-       ('Paralegal', 131225, 2),('Legal Assistant', 43375, 2),('Head of Patents', 153510, 2),
-       ('Chief Design Engineer', 122383.42, 3),('Mechanical Systems Engineer', 115417, 3),('Automation Specialist', 106620, 3),
-       ('Data Coordinator', 48745, 4),('Data Analyst', 56240, 4),('Senior Manager', 95973, 4),
-       ('VP Marketing', 158462, 5),('Product Engineer', 57465, 5),('Graphic Designer', 130467, 5);
+VALUES 
+    ('Compensation Analyst', 73644, 1),
+    ('Account Coordinator', 86025, 1),
+    ('Senior Financial Analyst', 108750, 1),
+    ('Paralegal', 131225, 2),
+    ('Legal Assistant', 43375, 2),
+    ('Head of Patents', 153510, 2),
+    ('Chief Design Engineer', 122383.42, 3),
+    ('Mechanical Systems Engineer', 115417, 3),
+    ('Automation Specialist', 106620, 3),
+    ('Data Coordinator', 48745, 4),
+    ('Data Analyst', 56240, 4),
+    ('Senior Manager', 95973, 4),
+    ('VP Marketing', 158462, 5),
+    ('Product Engineer', 57465, 5),
+    ('Graphic Designer', 130467, 5);
 
 -- EMPLOYEE SEED --
 INSERT INTO employee (first_name, last_name, manager_id, roles_id)

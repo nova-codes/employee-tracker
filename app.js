@@ -5,9 +5,12 @@ const cTable = require('console.table');
 const mysql = require('mysql');
 const figlet = require('figlet');
 const chalk = require('chalk');
+const clear = require('clear');
 
 // start up
 function startApp() {
+    clear();
+
     console.log(
         chalk.cyan(
             figlet.textSync('Employee Tracker', {
@@ -18,19 +21,19 @@ function startApp() {
     );
 };
 startApp(); 
+inquirerStart();
 
 const connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'rootroot',
-    database: 'employee-tracker'
+    password: 'd8C$9$6f~u&3e',
+    database: 'employeetracker'
 });
 
 connection.connect(function(err) {
     if (err) throw err;
     console.log('Connected as ID: ' + connection.threadID); 
-    inquirerStart();
 });
 
 function inquirerStart() {
@@ -107,8 +110,34 @@ function inquirerStart() {
                 connection.end();
                 break;
             
-            default:
-                connection.end();
+            /* default:
+                connection.end(); */
         }
     });
 };
+
+function viewAllEmployees() {
+    connection.query(
+        `SELECT employee.id, employee.first_name AS first, employee.last_name AS last, roles.title AS role, department.name AS department, roles.salary, CONCAT (managers.first_name , " " , managers.last_name) AS Manager
+        FROM roles
+        INNER JOIN employee ON employee.roles_id = roles.id
+        INNER JOIN department ON department.id = roles.department_id
+        LEFT JOIN employee AS managers ON employee.manager_id = managers.id
+        ORDER BY employee.id;`,
+
+        function(err, res) {
+            if (err) throw err;
+            console.table(res);
+
+        }
+    )
+}
+
+//function to call all employees from role table
+function viewAllRoles() {
+    connection.query("SELECT * FROM roles ", function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        homePage();
+    })
+}
